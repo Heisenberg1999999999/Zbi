@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat Room</title>
+  <link rel="stylesheet" href="styles.css">
+<style type="text/css" id="dcoder_stylesheet">/* أضف ألوانًا مختلفة لكل شخص هنا */
+.chat-box .message:nth-child(odd) {
+  background-color: #ccffcc;
+}
+
+.chat-box .message:nth-child(even) {
+  background-color: #ffccff;
+}
+</style></head>
+<body>
+  <div class="chat-container">
+    <div class="chat-box" id="chat-box"></div>
+    <input type="text" id="message-input" placeholder="Type your message...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+  <script src="script.js"></script>
+
+<script type="text/javascript" id="dcoder_script">function getRandomName() {
+  const names = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace"];
+  return names[Math.floor(Math.random() * names.length)];
+}
+
+function getRandomColor() {
+  return '#' + Math.floor(Math.random() * 16777215).toString(16);
+}
+
+function sendMessage() {
+  var messageInput = document.getElementById("message-input");
+  var chatBox = document.getElementById("chat-box");
+
+  var message = messageInput.value;
+  if (message.trim() !== "") {
+    var senderName = getRandomName();
+    var messageDiv = document.createElement("div");
+    messageDiv.className = "message";
+    messageDiv.innerHTML = `<strong style="color:${getRandomColor()}">${senderName}: </strong>${message}`;
+    chatBox.appendChild(messageDiv);
+    messageInput.value = "";
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+}
+</script></body></html>
